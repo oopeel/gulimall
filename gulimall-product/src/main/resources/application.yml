@@ -1,0 +1,28 @@
+# 配置数据源
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.77.128:3306/gulimall_pms?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    cloud:
+      nacos:
+        discovery:
+          server-addr: localhost:8848
+    application:
+      name: gulimall-product
+
+
+# dao映射mapper.xml 文件的路径配置
+mybatis-plus:
+  # classpath: 只扫描自己项目中的classpath 路径
+  # classpath*: 项目引入的其它项目中的classpath 路径也会被扫描到
+  mapper-locations: classpath*:/mapper/**/*.xml
+
+  # entity包中为数据库实体类,其中@TableId注释为主键id,但是默认不自增,使用如下配置使id自增
+  global-config:
+    db-config:
+      id-type: auto
+
+server:
+  port: 10000
