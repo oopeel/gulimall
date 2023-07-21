@@ -3,9 +3,8 @@ package com.oopeel.gulimall.member.controller;
 import com.oopeel.common.utils.PageUtils;
 import com.oopeel.common.utils.R;
 import com.oopeel.gulimall.member.entity.MemberEntity;
-import com.oopeel.gulimall.member.feign.CouponFeign;
+import com.oopeel.gulimall.member.feign.CouponFeignService;
 import com.oopeel.gulimall.member.service.MemberService;
-import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +14,6 @@ import java.util.Map;
 
 /**
  * 会员
- *
  * @author oopeel
  * @email oopeel@163.com
  * @date 2023-07-01 16:54:26
@@ -27,9 +25,10 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
-    @Resource
-    CouponFeign service;
+    @Autowired
+    CouponFeignService service;
 
+    @RequestMapping("/coupons")
     public R test() {
         MemberEntity entity = new MemberEntity();
         entity.setUsername("张小三");

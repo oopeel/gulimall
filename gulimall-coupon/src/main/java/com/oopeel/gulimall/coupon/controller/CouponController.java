@@ -5,6 +5,8 @@ import com.oopeel.common.utils.R;
 import com.oopeel.gulimall.coupon.entity.CouponEntity;
 import com.oopeel.gulimall.coupon.service.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -13,14 +15,15 @@ import java.util.Map;
 
 /**
  * 优惠券信息
- *
  * @author oopeel
  * @email oopeel@163.com
  * @date 2023-07-01 16:42:24
  */
+@RefreshScope
 @RestController
 @RequestMapping("coupon/coupon")
 public class CouponController {
+
     @Autowired
     private CouponService couponService;
 
@@ -29,6 +32,17 @@ public class CouponController {
         CouponEntity entity = new CouponEntity();
         entity.setCouponName("满100减9块");
         return R.ok().put("coupons", Arrays.asList(entity));
+    }
+
+    @Value("${coupon.user.name}")
+    private String name;
+
+    @Value("${coupon.user.age}")
+    private String age;
+
+    @RequestMapping("/test")
+    public R rest() {
+        return R.ok().put("username", name).put("userage", age);
     }
 
     /**

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 // 目标远程服务
 @FeignClient("gulimall-coupon")
-public interface CouponFeign {
+public interface CouponFeignService {
 
     @RequestMapping("/coupon/coupon/member/list")
     R memberCoupons();
